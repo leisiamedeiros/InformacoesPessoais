@@ -32,4 +32,10 @@ class User extends Authenticatable
     {
         $this->hasOne('App\DadosPessoais');
     }
+
+    //usuario com mtos enderecos
+    public function enderecos()
+    {
+        $this->hasMany('App\Endereco');
+    }
 }
