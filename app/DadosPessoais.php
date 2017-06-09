@@ -11,13 +11,13 @@ class DadosPessoais extends Model
 
     //permitir atributos atrobuidos em massa create
     protected $fillable = [
-        'nome_completo', 'cpf', 'rg', 'nascimento', 'genero',
+        'nome_completo', 'cpf', 'rg', 'nascimento', 'genero', 'user_id'
     ];
 
     //relacionamento pertence a usuario
     public function user()
     {
-        $this->belongsTo('App\User');
+        return $this->belongsTo('App\User');
     }
 
 }
