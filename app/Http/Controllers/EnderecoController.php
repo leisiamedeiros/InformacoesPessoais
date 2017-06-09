@@ -15,7 +15,7 @@ class EnderecoController extends Controller
     {
         $id = Auth::id();
         $enderecos = Endereco::where('user_id', $id)->get();
-        return $enderecos;
+        return view('home')->with('enderecos', $enderecos);
     }
 
     //mostra formulario para cadastro
@@ -49,19 +49,23 @@ class EnderecoController extends Controller
     //mostra o endereco a ser editado
     public function editar($id)
     {
-
+        $endereco = Endereco::find($id);
+        return view('form.endereco-edit')->with('endereco', $endereco);
     }
 
     //atualiza o endereco
     public function atualizar(EnderecoRequest $request, $id)
     {
-
+        $data = $request->all();
+        Endereco::find($id)->update($data);
+        return redirect('/home');
     }
 
     //remove o endereco escolhido
     public function apagar($id)
     {
-
+        Endereco::destroy($id);
+        return redirect('/home');
     }
 
 }
