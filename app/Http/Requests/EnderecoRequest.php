@@ -36,8 +36,8 @@ class EnderecoRequest extends FormRequest
         ];
     }
 
-    public function response(array $errors)
-    {
-        return Response::json($errors, 422);
-    }
+    // public function response(array $errors)
+    // {
+    //     return Response::json($errors, 422);
+    // }
 }
