@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Response;
 
 class DadosPessoaisRequest extends FormRequest
 {
@@ -31,4 +32,10 @@ class DadosPessoaisRequest extends FormRequest
           'genero' => 'required|string|between:1,20',
         ];
     }
+
+    // public function response(array $errors)
+    // {
+    //     return Response::json($errors, 422);
+    // }
+
 }

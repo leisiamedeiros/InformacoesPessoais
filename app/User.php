@@ -30,12 +30,12 @@ class User extends Authenticatable
     //relacionamento do usuario que tem dados pessoais
     public function dadosPessoais()
     {
-        $this->hasOne('App\DadosPessoais');
+        return $this->hasOne('App\DadosPessoais');
     }
 
     //usuario com mtos enderecos
     public function enderecos()
     {
-        $this->hasMany('App\Endereco');
+        return $this->hasMany('App\Endereco');
     }
 }
