@@ -9,7 +9,7 @@ class Endereco extends Model
 
     protected $fillable = [
       'nome', 'tipo', 'numero', 'complemento', 'bairro', 'localidade',
-      'uf', 'cep',
+      'uf', 'cep', 'user_id',
     ];
 
     public function user()
