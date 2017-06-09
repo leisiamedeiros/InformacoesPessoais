@@ -17,4 +17,14 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => 'auth'], function(){
+    Route::get('home', 'EnderecoController@listar')->name('home');
+    Route::get('dados', 'DadosPessoaisController@listar')->name('exibir');
+    Route::post('dados/novo', 'DadosPessoaisController@gravar')->name('gravar');
+    Route::get('dados/{id}/apagar', 'DadosPessoaisController@remover')->name('dados.apagar');
+    Route::get('endereco/novo', 'EnderecoController@criar')->name('endereco.novo');
+    Route::post('endereco/novo', 'EnderecoController@gravar')->name('criar');
+    Route::get('endereco/{id}/editar', 'EnderecoController@editar')->name('editar');
+    Route::put('endereco/{id}/editar', 'EnderecoController@atualizar')->name('atualizar');
+    Route::get('endereco/{id}/apagar', 'EnderecoController@apagar')->name('apagar');
+});
