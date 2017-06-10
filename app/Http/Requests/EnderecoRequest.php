@@ -26,9 +26,9 @@ class EnderecoRequest extends FormRequest
     {
         return [
           'nome' => 'required|string|between:5,40',
-          'tipo' => 'string|between:3,20|nullable',
+          'tipo' => 'required|string|between:3,20',
           'numero' => 'required|string|between:1,5',
-          'complemento' => 'string|between:4,40',
+          'complemento' => 'string|between:4,40|nullable',
           'bairro' => 'required|string|between:5,30',
           'localidade' => 'required|string|between:5,30',
           'uf' => 'required|string|size:2',
