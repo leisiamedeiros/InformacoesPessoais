@@ -40,8 +40,9 @@ class EnderecoController extends Controller
             'cep' => $dados['cep'],
             'user_id' => Auth::id(),
           ]);
-        } catch (\Exception $e) {
-            return response()->json($e);
+        } catch (\Illuminate\Database\QueryException $e) {
+            return redirect('/endereco/novo')
+              ->withErrors(['exception'=>'O endereco informado ja existe.']);
         }
         return redirect('/home');
     }
@@ -57,7 +58,12 @@ class EnderecoController extends Controller
     public function atualizar(EnderecoRequest $request, $id)
     {
         $data = $request->all();
-        Endereco::find($id)->update($data);
+        try {
+          Endereco::find($id)->update($data);
+        } catch (\Illuminate\Database\QueryException $e) {
+          return redirect()->route('editar', ['id' => $id])
+            ->withErrors(['exception'=>'O endereco informado ja existe.']);
+        }
         return redirect('/home');
     }
 
