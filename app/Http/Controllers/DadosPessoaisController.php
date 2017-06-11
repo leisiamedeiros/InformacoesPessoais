@@ -12,8 +12,8 @@ class DadosPessoaisController extends Controller
     public function listar()
     {
         $id = Auth::id();
-        $dadosp = DadosPessoais::where('user_id', $id)->get();
-        return view('form.dados')->with('dados', $dadosp);
+        $dados = DadosPessoais::where('user_id', $id)->first();
+        return view('form.dados')->with('dados', $dados);
     }
 
     public function gravar(DadosPessoaisRequest $request)
@@ -28,16 +28,17 @@ class DadosPessoaisController extends Controller
             'genero' => $request['genero'],
             'user_id' => $id,
           ]);
-        } catch (\Exception $e) {
-            return response()->json($e);
+        } catch (\Illuminate\Database\QueryException $e) {
+            return redirect('/dados')
+              ->withErrors(['exception'=>'So é permitido um cadastro']);
         }
-        return redirect('/home');
+        return redirect('/dados');
     }
 
     public function remover($id)
     {
         DadosPessoais::destroy($id);
-        return redirect('/home');
+        return redirect('/dados');
     }
 
 }
