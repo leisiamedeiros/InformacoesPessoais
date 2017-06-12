@@ -32,7 +32,7 @@ class EnderecoRequest extends FormRequest
           'bairro' => 'required|string|between:5,30',
           'localidade' => 'required|string|between:5,30',
           'uf' => 'required|string|size:2',
-          'cep' => 'required|string|size:8',
+          'cep' => 'required|digits:8',
         ];
     }
 

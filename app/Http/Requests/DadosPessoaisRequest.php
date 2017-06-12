@@ -26,7 +26,7 @@ class DadosPessoaisRequest extends FormRequest
     {
         return [
           'nome_completo' => 'required|string|between:5,100',
-          'cpf' => 'required|string|size:11',
+          'cpf' => 'required|digits:11',
           'rg' => 'required|string|between:4,10',
           'nascimento' => 'required|date_format:d-m-Y',
           'genero' => 'required|string|between:1,20',

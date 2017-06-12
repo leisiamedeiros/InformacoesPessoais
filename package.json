@@ -21,7 +21,9 @@
     "vue": "^2.1.10"
   },
   "dependencies": {
+    "cross-env": "^3.2.4",
     "jquery-mask-plugin": "^1.14.11",
-    "moment": "^2.18.1"
+    "moment": "^2.18.1",
+    "node-sass": "^4.5.3"
   }
 }
