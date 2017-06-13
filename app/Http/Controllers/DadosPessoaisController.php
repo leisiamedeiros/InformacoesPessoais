@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\DadosPessoais;
 use App\Http\Requests\DadosPessoaisRequest;
+use Carbon\Carbon;
 
 class DadosPessoaisController extends Controller
 {
@@ -24,7 +25,7 @@ class DadosPessoaisController extends Controller
             'nome_completo' => $request['nome_completo'],
             'cpf' => $request['cpf'],
             'rg' => $request['rg'],
-            'nascimento' => $request['nascimento'],
+            'nascimento' => Carbon::createFromFormat('d-m-Y',$request['nascimento'])->toDateString(),
             'genero' => $request['genero'],
             'user_id' => $id,
           ]);
