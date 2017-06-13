@@ -105,6 +105,8 @@ return [
         ],
     ],
 
+    'alpha_spaces' => 'O :attribute so pode conter letras e espaços.',
+
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Attributes
