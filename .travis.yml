@@ -4,6 +4,7 @@ dist: trusty
 
 php:
 - 7.1
+
 install:
   - travis_retry composer install --no-interaction
 
@@ -18,7 +19,6 @@ before_script:
 - php artisan serve &
 
 script:
-- php vendor/bin/phpunit --debug
 - php artisan dusk
 
 services:
