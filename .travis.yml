@@ -1,25 +1,26 @@
-language: php
 sudo: required
+language: php
 dist: trusty
 
 php:
-- 7.1
+  - 7.0
+  - 7.1
+
+services:
+  - mysql
+
+before_install:
+  - psql -c 'create database travis_ci_test;' -U postgres
 
 install:
   - travis_retry composer install --no-interaction
 
 before_script:
-- psql -c 'create database travis_ci_test;' -U postgres
-- cp .env.travis .env
-- php artisan key:generate
-- php artisan migrate
-- export DISPLAY=:99.0
-- sh -e /etc/init.d/xvfb start
-- ./vendor/laravel/dusk/bin/chromedriver-linux &
-- php artisan serve &
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - ./vendor/laravel/dusk/bin/chromedriver-linux &
+  - cp .env.testing .env
+  - php artisan serve &
 
 script:
-- php artisan dusk
-
-services:
-- postgresql
+  - php artisan dusk
